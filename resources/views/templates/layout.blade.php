@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/js/app.js'])
+
     <title>Vive una vida Fitness plus Entre Rios</title>
 
     <!-- favicon -->
@@ -27,6 +29,8 @@
 
 </head>
 
+
+
 <body id="top">
 
 <!-- HEADER -->
@@ -35,8 +39,10 @@
 
         <a href="/" class="logo">
             <ion-icon name="barbell-sharp" aria-hidden="true"></ion-icon>
-            <span class="span">Fitness plus Entre Rios</span>
+            <span class="span">Fitness plus entre rios</span>
         </a>
+
+
 
         <nav class="navbar" data-navbar>
 
@@ -134,7 +140,11 @@
 
         </div>
 
+
     </div>
+
+
+
 
 </footer>
 
@@ -158,7 +168,8 @@
 <!-- SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
 </body>
-<componentecontac></componentecontac>
+
 
 </html>

@@ -13,7 +13,6 @@
         <section class="section hero bg-dark has-after has-bg-image" id="home" aria-label="hero" data-section
                  style="background-image: url('./assets/images/hero-bg.png')">
             <div class="container">
-
                 <div class="hero-content">
 
                     <p class="hero-subtitle">
@@ -174,6 +173,15 @@
                                 </div>     </div> </div>  </div>
             </ul>
             </div>
+
+        </section>
+        <div id="app">
+            <componentcontact></componentcontact>
+            <ejercicios></ejercicios>
+        </div>
+
+        <section
+
         </section>
 
 
