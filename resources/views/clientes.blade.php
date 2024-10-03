@@ -101,7 +101,7 @@
                                 <span class="bi bi-arrow-clockwise">Refrescar</span>
                             </a>
                         </div>
-                    </div>
+                    </div>--!
                 </div>
             </div>
         </div>

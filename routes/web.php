@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller as controller;
 */
 
 //Route::get('/',[controller::class,'public']);
-
+Route::post('/store', [Controller::class, 'store']);
 
 Route::get('/', [controller::class, 'home']) ->name("/");
 
@@ -30,7 +30,7 @@ Route::get('add',[controller::class, 'add'])->name('add');
 Route::get('addC',[controller::class, 'addC'])->name('addC');
 
 
-Route::post('store', [controller::class, 'store']);
+//Route::post('store', [controller::class, 'store']);
 
 Route::post('storeC', [controller::class, 'storeC']);
 

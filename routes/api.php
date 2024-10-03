@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+
+Route::post('/products/store', [Controller::class, 'store']);
+Route::post('/products/{id}/update', [Controller::class, 'update']);
+
 
 /*
 |--------------------------------------------------------------------------

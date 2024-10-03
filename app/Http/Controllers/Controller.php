@@ -61,35 +61,26 @@ class Controller extends BaseController
 
     function store(Request $request)
     {
-        try{
+        try {
             $producto = new Producto();
             $producto->id = $request->input('id');
             $producto->nombre = $request->input('nombre');
             $producto->descripcion = $request->input('descripcion');
 
-
-            if($request->hasFile('img'))
-            {
-                $file=$request->file('img');
-                $extention=$file->getClientOriginalExtension();
-                $filename= time().'.'.$extention;
-                $file->move('images',$filename);
-                $producto->img=$filename;
+            if ($request->hasFile('img')) {
+                $file = $request->file('img');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move('images', $filename);
+                $producto->img = $filename;
+            } else {
+                $producto->img = "gym.jpg";
             }
-            else if ($producto->img == null){
-                $producto->img="gym.jpg";
-            }
-
 
             $producto->save();
-
-
+            return redirect()->route('productos')->with('success', 'Producto agregado con éxito!');
+        } catch (\Exception $exception) {
+            return response()->json(['error' => 'Error: El código del producto debe ser único.'], 400);
         }
-        catch (\Exception $exception){
-            return redirect()->route("productos")->with("title","Error: Ha creado un producto con el mismo codigo, este debe ser unico");
-        }
-        return redirect()->route("productos")->with("success", "Agregado con exito!");
-
     }
 
 
@@ -164,14 +155,25 @@ class Controller extends BaseController
 
     function update(Request $request, $id)
     {
-        $item = Producto::find($id);
-        $item->nombre = $request->post('nombre');
-        $item->descripcion = $request->post('descripcion');
+        $producto = Producto::find($id);
+        if (!$producto) {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
 
-        $item->save();
-        return redirect()->route("productos")->with("success", "Editado con exito!");
+        $producto->nombre = $request->input('nombre');
+        $producto->descripcion = $request->input('descripcion');
 
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('images', $filename);
+            $producto->img = $filename;
+        }
+
+        $producto->save();
+        return response()->json(['message' => 'Producto actualizado con éxito'], 200);
     }
+
 
 
     function actualizarCliente(Request $request, $id)

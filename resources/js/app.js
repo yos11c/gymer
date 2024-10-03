@@ -24,6 +24,12 @@ app.component('ejercicios', ejercicios);
 import componentcontact from './components/componentcontact.vue';
 app.component('componentcontact', componentcontact);
 
+import ProductForm from './components/ProductForm.vue';
+app.component('ProductForm', ProductForm);
+
+
+
+
 
 /**
  * The following block of code may be used to automatically register your
