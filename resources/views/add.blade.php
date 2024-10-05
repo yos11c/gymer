@@ -68,6 +68,17 @@
         toastr.error("{{ session('error') }}");
         @endif
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "positionClass": "toast-center-center", // Para que se vea centrado
+            "timeOut": "5000" // Duración visible
+        };
+
+        @if(session('message'))
+        toastr.success("{{ session('message') }}");
+        @endif
+    </script>
 
 </section>
 @endsection

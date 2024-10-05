@@ -8,6 +8,8 @@ Route::post('/products/store', [Controller::class, 'store']);
 Route::post('/products/{id}/update', [Controller::class, 'update']);
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

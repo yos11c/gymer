@@ -155,25 +155,28 @@ class Controller extends BaseController
 
     function update(Request $request, $id)
     {
-        $producto = Producto::find($id);
-        if (!$producto) {
-            return response()->json(['error' => 'Producto no encontrado'], 404);
+        try {
+            $producto = Producto::find($id);
+            if (!$producto) {
+                return redirect()->route('productos')->with('error', 'Producto no encontrado.');
+            }
+
+            $producto->nombre = $request->input('nombre');
+            $producto->descripcion = $request->input('descripcion');
+
+            if ($request->hasFile('img')) {
+                $file = $request->file('img');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move('images', $filename);
+                $producto->img = $filename;
+            }
+
+            $producto->save();
+            return redirect()->route('productos')->with('success', 'Producto actualizado con éxito!');
+        } catch (\Exception $exception) {
+            return redirect()->route('productos')->with('error', 'Error al actualizar el producto.');
         }
-
-        $producto->nombre = $request->input('nombre');
-        $producto->descripcion = $request->input('descripcion');
-
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('images', $filename);
-            $producto->img = $filename;
-        }
-
-        $producto->save();
-        return response()->json(['message' => 'Producto actualizado con éxito'], 200);
     }
-
 
 
     function actualizarCliente(Request $request, $id)
